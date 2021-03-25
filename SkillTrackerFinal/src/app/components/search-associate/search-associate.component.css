@@ -1,0 +1,43 @@
+body {
+    background-image: url("../../../assets/images/background.jpg");
+    background-repeat: no-repeat;
+    height: 100%;
+    background-position: center;
+    background-size: cover;
+}
+
+.searchassociates {
+    width: 100%
+}
+
+.searchCriteria {
+    margin-top: 20px;
+    width: 60%
+}
+
+.profilepicture {
+    height: 100px;
+    width: 100px;
+}
+
+.infoHeading {
+    background-color: black;
+    color: white;
+}
+
+.searchMechanism {
+    margin-top: 30px;
+    margin-left: 30%;
+}
+
+.searchAll {
+    margin-left: 20%;
+}
+
+.associateDetails>div {
+    margin: 20px;
+}
+
+.addAssociate {
+    float: right;
+}
