@@ -1,0 +1,62 @@
+<div class="infoHeading row">
+    <div class="col-9">
+      <h4>Welcome,</h4>
+    </div>
+    <div class="addAssociate col-1">
+      <a href="addAssociate">Add associate</a>
+    </div>
+    <div class="col-1">
+      <p><a href="#">Add <br>Skills</a></p>
+    </div>
+  </div>
+  <!-- <button (click) = "goTo('addAssociate')">Add Associate</button> -->
+  <div class="display container">
+    <div class="searchMechanism">
+      <button id="search-button" type="button" (click) = "searchForAll()" class="searchAll btn btn-primary">
+        Search All Associates
+      </button><br>
+      <form #searchAssociateForm="ngForm" >
+        <div class="searchCriteria input-group">
+          <select class="form-control" id="searchOption" ngModel name="searchOption" 
+          #searchOption="ngModel"required (change) = "displaySearchOption(searchOption)">
+            <option value="">Select one</option>
+            <option value="associateId">search By Id</option>
+            <option value="associateName">search By Name</option>
+            <option value="associateEmail">search By Email</option>
+            <option value="skillName">search By Skills</option>
+          </select>
+          <div class="form-outline">
+            <input id="searchValue" type="text" placeholder="Id/Name/Email/Skill" required class="form-control" ngModel name="searchValue" 
+              #searchValue="ngModel" (change) = "displaySearchValue(searchValue)"/>
+          </div>
+          <button id="search-button" type="button" (click) = "searchForUser()" class="btn btn-primary" [disabled]="searchAssociateForm.form.invalid">
+            Search
+          </button>
+          <div class="alert alert-danger" *ngIf="searchOption.touched && !searchOption.valid">
+            <div *ngIf="searchOption.errors.required">Please select criteria from dropdown list</div>
+          </div>
+          <div class="alert alert-danger" *ngIf="searchValue.touched && !searchValue.valid">
+            <div *ngIf="searchValue.errors.required">Please eneter search value in textbox</div>
+          </div>
+        </div>
+      </form>
+    </div><br>
+    <div class="associateDetails row">
+      <div class="card text-dark bg-white" style="width: 200px" (click)="displayCard()" *ngFor="let value of responseData">
+        <div class="card-body" >
+          <img class="profilepicture img-fluid rounded-circle" src="../../assets/images/profile.png" alt="Can't load image">
+          <h5 class="card-title">{{value.associateName}}</h5>
+          <p class="card-text"><a href="#">{{value.associateEmail}}</a><br>
+            </p>
+        </div>
+      </div>
+      <div class="card text-dark bg-white" style="width: 200px" *ngIf="responseDataById && !responseData">
+        <div class="card-body" >
+          <img class="profilepicture img-fluid rounded-circle" src="../../assets/images/profile.png" alt="Can't load image">
+          <h5 class="card-title">{{responseDataById.associateName}}</h5>
+          <p class="card-text"><a href="#">{{responseDataById.associateEmail}}</a><br></p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- <router-outlet></router-outlet> -->

@@ -1,0 +1,56 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-4">
+            <br><h1 class="display-4"><b><i>Welcome to Skills Traker</i></b></h1><br>
+            <img class="img-fluid" src="../../assets/images/skills.jpg" alt="Can't load image">
+        </div>
+        <div class="col-md-8">
+            <div class="row login-Page">
+                <div class="col-md-6 hrLogindiv" id="hrLogindiv" (click)="ActivateHrLogin()">
+                    <h3><b>HR LOGIN</b></h3>
+                </div>
+                <div class="col-md-6 adminLogindiv" id="adminLogindiv" (click)="ActivateAdminLogin()">
+                    <h3><b>ADMIN LOGIN</b></h3>
+                </div>
+                <!-- Login HR div Starts --> 
+                <div class="col-md-12 login-form-1" id="login-form-1" *ngIf="div1">
+                    <form>
+                        <div class="form-group">
+                            <input type="text" id="hrUserName" name="hrUserName" class="form-control" placeholder="HR User name" required 
+                            [(ngModel)] = "theHrManager.hrUserName"/>
+                        </div>
+                        <div class="form-group">
+                            <input type="password" id="hrPassword" name="hrPassword" class="form-control" placeholder="Your password" required 
+                            [(ngModel)] = "theHrManager.hrPassword"/>
+                            </div>
+                        <div class="form-group">
+                            <button type="submit" class="btnSubmit" (click) = "hrManagerLogin('homepage')">Login</button>
+                        </div>
+                    </form>
+                </div>
+                <!-- Login Hr Ends -->
+                <!-- Lgin Admin Starts -->
+                <div class="col-md-12 login-form-2" id="login-form-2" *ngIf="div2">
+                    <form>
+                        <div class="form-group">
+                            <input type="text" id="userName1" class="form-control" placeholder="Admin User name" required 
+                                ngModel name="userName1" #userName1 = "ngModel" (change) = "display(userName1)">
+                            <div class="alert alert-danger" *ngIf="userName1.touched && !userName1.valid">Please enter valid Username</div>
+                        </div>
+                        <div class="form-group">
+                            <input type="password" id="password1" class="form-control" placeholder="Your password" required 
+                                ngModel name="password1"
+                                #password1 = "ngModel"
+                                (change) = "display(password1)">
+                            <div class="alert alert-danger" *ngIf="password1.touched && !userName1.valid">Enter correct password</div>
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="btnSubmit"><a href="addinghrdetails">Login</a></button>
+                        </div>
+                    </form>
+                </div>
+                <!-- login Admin Ends -->
+            </div>
+        </div>
+    </div>
+</div>

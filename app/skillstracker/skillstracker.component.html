@@ -1,0 +1,247 @@
+<!-- <input type="text" placeholder="User Name to Search" [(ngModel)] = "gitUserName"/> -->
+<!-- <button (click)="getAllAssociates()">View All Employees</button>
+<br>
+<br> -->
+
+<!-- <input type="text" name="associatetName" placeholder="Associate Name" [(ngModel)]="theAssociate.associateName"><br>
+<input type="text" name="associateMobileNo" placeholder="Associate Mobile No"
+  [(ngModel)]="theAssociate.associateMobileNo"><br>
+  <select style="width: 80px;" [(ngModel)]="selectedValue" (ngModelChange)="onAssociateSkillLevelSelected($event)"><br>
+    <option *ngFor="let skill of associateSkillLevel" [ngValue]="skill">{{skill.skillLevel}}</option>
+  </select><br>
+<input type="text" name="associateMail" placeholder="Associate Email" [(ngModel)]="theAssociate.associateEmail"><br>
+<select [(ngModel)]="selectedValue" (ngModelChange)="onAssociateSkillNameSelected($event)"><br>
+  <option *ngFor="let skill of associateSkillName" [ngValue]="skill">{{skill.skillName}}</option>
+</select>
+
+<br>
+<button (click)="addNewAssociate()">Add a new associate</button>
+<br>
+<br>
+<input type="number" name="associateId" placeholder="Associate Id" [(ngModel)]="theAssociate.associateId"><br>
+<button (click)="findAssociateById()">Find Associate By Id</button>
+<br>
+<br>
+<input type="text" name="associateName" placeholder="Associate Name" [(ngModel)]="theAssociate.associateName"><br>
+<button (click)="findAssociateByName()">Find Associate By Name</button>
+<br>
+<br>
+<input type="text" name="associateEmail" placeholder="Associate Email" [(ngModel)]="theAssociate.associateEmail"><br>
+<button (click)="findAssociateByEmail()">Find Associate By Email</button>
+<br>
+<br>
+<input type="text" name="associateMobileNo" placeholder="Associate Mobile No" [(ngModel)]="theAssociate.associateMobileNo"><br>
+<button (click)="findAssociateByMobileNo()">Find Associate By Mobile No</button>
+<br>
+<br>
+<input type="text" name="skillName" placeholder="Associate Skill" [(ngModel)]="skillName"><br>
+<button (click)="findAssociateBySkill()">Find Associate By Skills</button>
+<br>
+<br>
+<input type="text" name="associateId" placeholder="Associate Id" [(ngModel)]="theAssociate.associateId"><br>
+<button (click)="deleteAssociateById()">Delete Associate By Id</button> -->
+
+
+
+<form #associateCreationForm="ngForm">
+    <div class="form-group text-center border border-light p-5 " style="margin-top:70px;">
+      <input type="text" id="associateName" class="form-control" placeholder="Associate Name" required ngModel
+        name="associateName" [(ngModel)]="theAssociate.associateName" #associateName="ngModel"
+        (change)="display(associateName)"><br>
+  
+      <!-- Create this division below the field for any validation messages -->
+      <div class="alert alert-danger" *ngIf="associateName.touched && !associateName.valid">
+        <div *ngIf="associateName.errors.required">*required</div>
+      </div>
+  
+      <input type="text" id="associateEmail" class="form-control" placeholder="Associate Email" required minlength="3"
+        pattern="^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$" ngModel name="associateEmail"
+        [(ngModel)]="theAssociate.associateEmail" #associateEmail="ngModel"><br>
+  
+      <!-- Create this division below the field for any validation messages -->
+      <div class="alert alert-danger" *ngIf="associateEmail.touched && !associateEmail.valid">
+        <div *ngIf="associateEmail.errors.required">*required</div>
+  
+        <div *ngIf="associateEmail.errors.pattern">Email should match the pre-defined pattern</div>
+      </div>
+  
+  
+      <input type="number" class="form-control" id="associateMobileNo" ngModel name="associateMobileNo"
+        placeholder="Associate Mobile No" #associateMobileNo="ngModel" required pattern="^((\\+91-?)|0)?[0-9]{10}$"
+        [(ngModel)]="theAssociate.associateMobileNo"><br>
+      <div class="alert alert-danger" *ngIf="associateMobileNo.touched && !associateMobileNo.valid">
+        <div *ngIf="associateMobileNo.errors.required">*required</div>
+        <div *ngIf="associateMobileNo.errors.pattern">Mobile number should match the pre-defined pattern</div>
+      </div>
+      <div class="container-fluid">
+        <div *ngFor="let skill of theSkill;let i = index">
+            <div class="row">
+               
+                <div class="col-lg-5">
+            <select id="userSkill" class="form-control" required [(ngModel)]="skill.skillName" #userSkill="ngModel" name="skill.skillName{{i}}">
+                <option value="">Select one</option>
+                <option value="java">Java</option>
+                <option value="angular">Angular</option>
+                <option value=".net">.Net</option>
+                <option value="javascript">JavaScript</option>
+            </select>
+            <div class="alert alert-danger" *ngIf="userSkill.touched && !userSkill.valid">
+                <div *ngIf="userSkill.errors.required">skill is required</div>
+    
+            </div>
+            </div>
+            <div class="col-lg-5">
+            <select id="userSkillLevel" class="form-control" required [(ngModel)]="skill.skillLevel"  name="skill.skillLevel{{i}}" #userSkillLevel="ngModel">
+                <option value="">Select skill level</option>
+                <option>Basic</option>
+                <option>Intermediate</option>
+                <option>Advanced</option>
+            </select> 
+            <div class="alert alert-danger" *ngIf="userSkillLevel.touched && !userSkillLevel.valid">
+                <div *ngIf="userSkillLevel.errors.required">skillLevel is required</div>
+    
+            </div>
+        </div>
+        <div  class="col-lg-1"> 
+        <button (click)="removeValue(i)" [disabled]="butDisabled" class="btn btn-danger">Remove</button> 
+    </div>
+    <div class="col-lg-1">
+      <button (click)="addvalue()" class="btn btn-primary" >ADD</button>
+      </div>
+        </div>
+    <br>
+            
+        </div>
+      
+      </div>
+       <br>
+      <!-- <div class="container-fluid">
+        <div class="row">
+          <div class="col-lg-5">
+  
+            <select class="form-control" required placeholder="Associate Skill"
+              (change)="onAssociateSkillNameSelected($event.target.value)"><br>
+              <option value="" disabled selected hidden>Select an associate skill</option>
+              <option value="Java">Java</option>
+              <option value="Angular">Angular</option>
+              <option value=".Net">.Net</option>
+              <option value="Javascript">JavaScript</option>
+            </select> -->
+            <!-- <div class="alert alert-danger" *ngIf="selectedSkillName.touched && !skills.valid">
+              <div *ngIf="k.errors.required">*required</div>
+            
+            </div> -->
+          <!-- </div>
+          <div class="col-lg-5">
+            <select placeholder="Associate Skill Level" class="form-control"
+              (change)="onAssociateSkillLevelSelected($event.target.value)" [disabled]="butDisabled"><br>
+              <option value="" disabled selected hidden>Select the skill level</option>
+              <option value="basic">Basic</option>
+              <option value="intermediate">Intermediate</option>
+              <option value="advanced">Advanced</option>
+            </select>
+          </div>
+          <div class="col-lg-2">
+            <button (click)="createDiv()" class="btn btn-primary">Add More</button>
+          </div>
+        </div>
+      </div>
+      <br>
+  
+  
+  
+  
+        <div class="container-fluid" *ngFor="let container of divs" id="div{{div}}">
+            <div *ngFor="let skill of theSkill;let i = index">
+                <div class="row">
+                    <div class="col-lg-5">
+                <select id="userSkill" class="form-control" required [(ngModel)]="skill.skillName" #userSkill="ngModel" name="skill.skillName{{i}}">
+                    <option value="">Select one</option>
+                    <option value="java">Java</option>
+                    <option value="angular">Angular</option>
+                    <option value=".net">.Net</option>
+                    <option value="javascript">JavaScript</option>
+                </select><br>
+                <div class="alert alert-danger" *ngIf="userSkill.touched && !userSkill.valid">
+                    <div *ngIf="userSkill.errors.required">skill is required</div>
+        
+                </div>
+                </div>
+                <div class="col-lg-5">
+                <select id="userSkillLevel" class="form-control" required [(ngModel)]="skill.skillLevel"  name="skill.skillLevel{{i}}" #userSkillLevel="ngModel">
+                    <option value="">Select skill level</option>
+                    <option>Basic</option>
+                    <option>Intermediate</option>
+                    <option>Advanced</option>
+                </select> 
+                <div class="alert alert-danger" *ngIf="userSkillLevel.touched && !userSkillLevel.valid">
+                    <div *ngIf="userSkillLevel.errors.required">skillLevel is required</div>
+        
+                </div>
+            </div>
+           
+            <div class="col-lg-2">
+                 <button (click)="removeValue(i)">Remove</button> 
+                </div>
+              </div>
+            </div>
+            </div>
+            -->
+        
+  
+  
+  <!--       
+        <div class="row">
+  
+          <div class="col-lg-5">
+  
+            <select class="form-control" 
+              placeholder="Associate Skill" (change)="onAssociateSkillLevelSelected($event.target.value)"><br>
+              <option value="" disabled selected hidden>Select an associate skill</option>
+  
+              <option value="Java">Java</option>
+              <option value="Angular">Angular</option>
+              <option value=".Net">.Net</option>
+              <option value="Javascript">JavaScript</option>
+            </select>
+  
+          </div>
+   
+          <div class="col-lg-5">
+  
+  
+            <select placeholder="Associate Skill Level" class="form-control"
+              (ngModelChange)="onAssociateSkillNameSelected($event)"><br>
+              <option value="" disabled selected hidden>Select the skill level</option>
+              <option value="basic">Basic</option>
+              <option value="intermediate">Intermediate</option>
+              <option value="advanced">Advanced</option>
+            </select>
+  
+          </div>
+          <div class="col-lg-2">
+            <button (click)="removeDiv()" class="btn btn-danger">Delete</button>
+          </div>
+  
+        </div> -->
+        <!-- <br>
+  
+      
+      <br> -->
+     
+      <button type="button" (click)="addNewAssociate()" class=" btn btn-success btn-lg btn-block"
+        [disabled]="!associateCreationForm.form.valid">Add Associate</button>
+  
+    </div>
+  </form>
+  
+  
+  <!-- {{responseDataFromGit ?.name}} -->
+  
+  <!-- <div *ngIf = "responseDataFromGit">
+    <h1>Name of Git : {{responseDataFromGit.name}}</h1>
+    <p>Company : {{responseDataFromGit.company}}</p>
+    <p>Followers : {{responseDataFromGit.followers}}</p>
+    <p>Public Repositories : {{responseDataFromGit.public_repos}}</p>
+    <p>From : {{responseDataFromGit.location}}</p>
+  </div> -->
