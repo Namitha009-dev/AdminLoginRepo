@@ -1,9 +1,12 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "cli": {
+    "analytics": "488e507b-ca6a-4a83-a6fd-b7e5e9f8855b"
+  },
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "SkillsTracker": {
+    "SkillsTrackerFrontend": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -13,7 +16,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/SkillsTracker",
+            "outputPath": "dist/SkillsTrackerFrontend",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -61,18 +64,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "SkillsTracker:build"
+            "browserTarget": "SkillsTrackerFrontend:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "SkillsTracker:build:production"
+              "browserTarget": "SkillsTrackerFrontend:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "SkillsTracker:build"
+            "browserTarget": "SkillsTrackerFrontend:build"
           }
         },
         "test": {
@@ -109,16 +112,16 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "SkillsTracker:serve"
+            "devServerTarget": "SkillsTrackerFrontend:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "SkillsTracker:serve:production"
+              "devServerTarget": "SkillsTrackerFrontend:serve:production"
             }
           }
         }
       }
     }
   },
-  "defaultProject": "SkillsTracker"
+  "defaultProject": "SkillsTrackerFrontend"
 }
