@@ -116,6 +116,10 @@ export class UpdateAssociateDetailsComponent implements OnInit {
     });
   }
 }
+skillsOption(){
+  // this.dropDownSkill=document.getElementById('userSkill').nodeValue;
+ // this.theSkill.remove(this.dropDownSkill);
+}
 
 
 }

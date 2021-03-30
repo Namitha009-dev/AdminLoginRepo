@@ -27,7 +27,7 @@ body {
 
 .searchMechanism {
     margin-top: 30px;
-    margin-left: 30%;
+     margin-left: 30%; 
 }
 
 .searchAll {
@@ -40,4 +40,20 @@ body {
 
 .addAssociate {
     float: right;
+}
+
+.card-body{
+    border-radius: 12%;
+    background: linear-gradient(180deg, rgba(0, 0, 0, 1) 0%, rgba(8, 7, 42, 1) 75%, rgb(8, 10, 63) 100%);
+    color:white;
+    text-align: center;
+}
+.card-title{
+    color: navajowhite;
+}
+.email{
+    color: white !important;
+}
+.display{
+    margin-left: 3%;
 }

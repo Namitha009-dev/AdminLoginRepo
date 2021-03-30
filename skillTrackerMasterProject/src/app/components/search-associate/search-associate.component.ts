@@ -18,6 +18,7 @@ export class SearchAssociateComponent implements OnInit {
   constructor(private httpClient:HttpClient,private router:Router) { }
 
   ngOnInit(): void {
+    this.searchForAll();
   }
   displaySearchOption(searchOption : any){
     this.searchOption = searchOption.value;

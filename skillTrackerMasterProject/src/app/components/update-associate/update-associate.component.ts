@@ -39,7 +39,7 @@ export class UpdateAssociateComponent implements OnInit {
     });
   }
 
-  graphFlag : boolean =false;
+  graphFlag : boolean =true;
   displayGraph(){
     this.graphFlag = true;
     

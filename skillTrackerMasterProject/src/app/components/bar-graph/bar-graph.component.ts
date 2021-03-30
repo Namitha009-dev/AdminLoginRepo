@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ChartDataSets, ChartOptions, ChartType } from 'chart.js';
-import { Label } from 'ng2-charts';
+import { Color, Colors, Label } from 'ng2-charts';
 import { AssociatesService } from 'src/app/services/associates.service';
 import { Skills } from 'src/app/skills';
 
@@ -23,9 +23,16 @@ export class BarGraphComponent implements OnInit {
     responsive: true,
   };
 
+  barChartColors: Color[] = [
+    {
+      borderColor: 'black',
+      backgroundColor: '#007bff',
+    },
+  ];
+ 
   barChartLabels: Label[] = this.skillNames;
   barChartType: ChartType = 'bar';
-  barChartLegend = true;
+  barChartLegend = false;
   barChartPlugins = [];
 
   barChartData: ChartDataSets[] = [
