@@ -12,6 +12,14 @@ import { UpdateAssociateComponent } from './components/update-associate/update-a
 import { UpdateAssociateDetailsComponent } from './components/update-associate-details/update-associate-details.component';
 import { ChartsModule } from 'ng2-charts';
 import { BarGraphComponent } from './components/bar-graph/bar-graph.component';
+import { HomePageComponent } from './components/home-page/home-page.component';
+import { LoginPageComponent } from './components/login-page/login-page.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
+import {NgxPaginationModule} from 'ngx-pagination';
+import { CreateHrDetailsComponent } from './components/create-hr-details/create-hr-details.component';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
+
 
 
 @NgModule({
@@ -23,6 +31,10 @@ import { BarGraphComponent } from './components/bar-graph/bar-graph.component';
     UpdateAssociateComponent,
     UpdateAssociateDetailsComponent,
     BarGraphComponent,
+    HomePageComponent,
+    LoginPageComponent,
+    CreateHrDetailsComponent
+  
     
   ],
   imports: [
@@ -30,7 +42,11 @@ import { BarGraphComponent } from './components/bar-graph/bar-graph.component';
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
-    ChartsModule
+    ChartsModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot(),
+    NgxPaginationModule,
+    Ng2SearchPipeModule
   ],
   providers: [],
   bootstrap: [AppComponent]

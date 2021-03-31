@@ -13,6 +13,9 @@ export class SearchAssociateComponent implements OnInit {
   responseDataById :  any;
   responseData :  any;
   searchOption:string;
+
+  p: number = 1;
+  collection: any[];  
   // router: any;
 
   constructor(private httpClient:HttpClient,private router:Router) { }
@@ -54,6 +57,7 @@ export class SearchAssociateComponent implements OnInit {
     responseUrl.subscribe((responseData) => {
     this.responseData = responseData;
     console.log(responseData);  
+    this.collection=this.responseData;
     });
   }
   displayCard(evt: MouseEvent){

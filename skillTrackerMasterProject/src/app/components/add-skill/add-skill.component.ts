@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AssociatesService } from 'src/app/services/associates.service';
 import { SkillsEntry } from 'src/app/skillsentry';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-add-skill',
@@ -9,9 +10,10 @@ import { SkillsEntry } from 'src/app/skillsentry';
   styleUrls: ['./add-skill.component.css']
 })
 export class AddSkillComponent implements OnInit {
-
+  flag:boolean=false;
+  alertMessage:any;
   theSkillEntry : SkillsEntry = new SkillsEntry();
-  constructor(private theService:AssociatesService,private router:Router) { }
+  constructor(private theService:AssociatesService,private router:Router,private toastr: ToastrService) { }
 
   ngOnInit(): void {
   }
@@ -22,8 +24,11 @@ export class AddSkillComponent implements OnInit {
     let responseDataBack = this.theService.addSkillsInSkillsEntry(this.theSkillEntry);
     responseDataBack.subscribe((responseData)=>
     {
-      alert(responseData.message);
-      this.router.navigate(['/search-associate']);
+   
+      //this.toastr.success(responseData.message);
+      this.alertMessage=responseData.message;
+      this.flag=!this.flag;
+      this.router.navigate(['/add-skill']);
     });
   }
 

@@ -1,6 +1,8 @@
 import { HttpClient } from '@angular/common/http';
+import { analyzeAndValidateNgModules } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { Associates } from 'src/app/associates';
 import { AssociatesService } from 'src/app/services/associates.service';
 import { Skills } from 'src/app/skills';
@@ -21,14 +23,18 @@ export class AddAssociateComponent implements OnInit {
   skill: Skills= new Skills;
   theSkill=[];
   responseDetails: any;
+  alertMessage:any;
+  flag:boolean;
 
-  constructor(private httpClient:HttpClient,private theService:AssociatesService,private router:Router) {
+  constructor(private httpClient:HttpClient,private theService:AssociatesService,private router:Router,private toastr:ToastrService) {
     this.theSkill.push({skill: ""});
+    this.flag=true;
    }
 
   ngOnInit(): void {
 
     //for creating skills in combo box which is obtained from skills entry database
+    
     let responseDataBack = this.httpClient.get("http://localhost:8065/api/associates/skillentry");
     responseDataBack.subscribe((responseData)=>
     {
@@ -83,8 +89,11 @@ export class AddAssociateComponent implements OnInit {
     let responseDataBack = this.theService.addNewAssociate(this.theAssociate);
 
     responseDataBack.subscribe((responseData) => {
-      alert(responseData.message);
-      this.router.navigate(['/search-associate'])
+      //alert(responseData.message);
+     // this.toastr.success(responseData.message);
+     this.alertMessage=responseData.message;
+     this.flag=!this.flag;
+      this.router.navigate(['/add-associate'])
     
     });
   }

@@ -1,4 +1,6 @@
-
+<div *ngIf="!flag" class="alert alert-primary" role="alert">
+    {{alertMessage}}
+</div>
 <h3 style="text-align: center; padding: 30px; margin-left: 15px;"><strong>Add Associate</strong> </h3>
 <form #associateCreationForm="ngForm">
     <div class="form-group text-center border border-dark p-3 m-3" style="margin-top:20px;">
@@ -79,6 +81,12 @@
 
         </div>
         <br>
+        <!-- <div class="row m-3"> -->
+            <div class="col-md-6 w-100">
+                <input type="file" required >
+            </div><br>
+        <!-- </div> -->
+        
 
 
         <button type="button" (click)="addNewAssociate()" class=" btn btn-success btn-lg btn-block" [disabled]="!associateCreationForm.form.valid" style="width: 200px;margin-left: 15px;" >Add Associate</button>

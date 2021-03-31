@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { Associates } from 'src/app/associates';
 import { AssociatesService } from 'src/app/services/associates.service';
 import { Skills } from 'src/app/skills';
@@ -21,7 +22,7 @@ export class UpdateAssociateDetailsComponent implements OnInit {
   theSkill=[];
   responseDetails: any;
   associateId:any;
-  constructor(private route:ActivatedRoute,private httpClient:HttpClient, private theService:AssociatesService,private router:Router) { }
+  constructor(private route:ActivatedRoute,private httpClient:HttpClient, private theService:AssociatesService,private router:Router,private toastr:ToastrService) { }
 
   ngOnInit(): void {
     this.route.paramMap.subscribe(params=>{
@@ -96,8 +97,9 @@ export class UpdateAssociateDetailsComponent implements OnInit {
     let responseDataBack = this.theService.updateAssociate(this.theAssociate.associateId, this.theAssociate);
     responseDataBack.subscribe((responseData)=>{
       this.responseData = responseData;
-      alert(responseData.message);
-      this.router.navigate(['/search-associate']);
+     // alert(responseData.message);
+      this.toastr.success(this.responseData.message);
+     // this.router.navigate(['/search-associate']);
     });
   }
 
@@ -110,8 +112,9 @@ export class UpdateAssociateDetailsComponent implements OnInit {
     responseDataBack.subscribe((responseData)=>
     {
       this.responseData = responseData;
-      alert(this.responseData.message);
-      this.router.navigate(['search-associate']);
+     // alert(this.responseData.message);
+      this.toastr.success(this.responseData.message);
+     // this.router.navigate(['search-associate']);
       
     });
   }

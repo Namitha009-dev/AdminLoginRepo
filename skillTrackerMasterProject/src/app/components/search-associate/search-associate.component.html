@@ -13,7 +13,7 @@
 </div>
 
 <div class="display ">
-    <div class="searchMechanism">
+    <!-- <div class="searchMechanism">
         <button id="search-button" type="button" (click)="searchForAll()" class="searchAll btn btn-primary">
             Search All Associates
         </button><br>
@@ -34,27 +34,48 @@
                 Search
             </button>
         </div>
-    </div><br>
-    <div class="associateDetails row">
-        <div class="card text-dark bg-white" style="width: 200px" *ngFor="let value of responseData">
-            <div class="card-body" [routerLink]="['/update-associate',value.associateId]">
-                <img class="profilepicture img-fluid rounded-circle" src="../../assets/images/associate-profile.jpeg"
-                    alt="Can't load image">
-                <h5 class="card-title">{{value.associateName}}</h5>
-                <p class="card-text "><a class="email" href="#">{{value.associateEmail}}</a><br>
-                </p>
-                <p class="card-text">{{value.associateMobileNo}}</p>
+    </div><br> -->
 
-            </div>
-        </div>
-        <div class="card text-dark bg-white" style="width: 200px;" *ngIf="responseDataById && !responseData">
-            <div class="card-body" [routerLink]="['/update-associate',responseDataById.associateId]">
-                <img class=" profilepicture img-fluid rounded-circle " src="../../assets/images/profile.png "
-                    alt="Can 't load image">
-                <h5 class="card-title">{{responseDataById.associateName}}</h5>
-                <p class="card-text"><a href="#">{{responseDataById.associateEmail}}</a><br></p>
-                <p class="card-text">{{responseDataById.associateMobileNo}}</p>
-            </div>
-        </div>
+
+    <!-- <div style="width:60%; float:left;"> 
+        <input type="search" id="search-field" placeholder="Search by Id,Name,Email,Skill and Mobile"
+            class="form-control" [(ngModel)]="searchValue" onfocus="" />
+        <button class="btn btn-primary">Search</button>
+    </div> -->
+
+    <div class="search-hero">
+        <input class="form-control" type="text" name="search" [(ngModel)]="searchValue" autocomplete="off"
+            placeholder="&#61442; Search by Id,Name,Email,Skill and Mobile">
     </div>
+
+    <div class="associateDetails text-center row">
+        <ul class="list-inline list-unstyled">
+            <li class="list-inline-item"
+                *ngFor="let value of responseData |filter:searchValue| paginate:{itemsPerPage:5,currentPage: p }">
+                <div class="card text-dark bg-white" style="width: 200px">
+                    <div class="card-body" [routerLink]="['/update-associate',value.associateId]">
+                        <img class="profilepicture img-fluid rounded-circle"
+                            src="../../assets/images/associate-profile.jpeg" alt="Can't load image">
+                        <h5 class="card-title">{{value.associateName}}</h5>
+                        <p class="card-text "><a class="email" href="#">{{value.associateEmail}}</a><br>
+                        </p>
+                        <p class="card-text">{{value.associateMobileNo}}</p>
+
+                    </div>
+                </div>
+                <div class="card text-dark bg-white" style="width: 200px;" *ngIf="responseDataById && !responseData">
+                    <div class="card-body" [routerLink]="['/update-associate',responseDataById.associateId]">
+                        <img class=" profilepicture img-fluid rounded-circle " src="../../assets/images/profile.png "
+                            alt="Can 't load image">
+                        <h5 class="card-title">{{responseDataById.associateName}}</h5>
+                        <p class="card-text"><a href="#">{{responseDataById.associateEmail}}</a><br></p>
+                        <p class="card-text">{{responseDataById.associateMobileNo}}</p>
+                    </div>
+                </div>
+            </li>
+        </ul>
+
+    </div>
+
+    <pagination-controls class="text-center" (pageChange)="p = $event"></pagination-controls>
 </div>
