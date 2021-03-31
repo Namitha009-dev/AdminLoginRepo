@@ -1,0 +1,13 @@
+.heading{
+    background-color: darkblue;
+    padding: 20px;
+}
+.login-form-1{
+    border: solid 2px black;
+    padding: 25px;
+    background-color: rgb(110, 163, 241);
+}
+.topnav {
+    background-color: black;
+    height: 65px;
+}
