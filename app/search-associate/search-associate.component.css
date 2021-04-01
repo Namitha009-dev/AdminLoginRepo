@@ -1,0 +1,56 @@
+
+.searchassociates {
+    width: 100%
+}
+
+.searchCriteria {
+    margin-top: 20px;
+    width: 60%
+}
+
+.profilepicture {
+    height: 100px;
+    width: 100px;
+}
+
+.infoHeading div[class^="col"]{
+    background-color: black;
+    border: 1px solid #fff;
+    text-align: center;
+    color: #fff;
+    padding: 5px;
+}
+.welcome{
+    background-color: black;
+    border: 1px solid #fff; 
+    color: #fff;
+    padding: 5px;
+    padding-left: 30px;
+}
+
+.searchMechanism {
+    margin-top: 30px;
+    margin-left: 30%;
+}
+
+.searchAll {
+    margin-left: 20%;
+}
+
+.associateDetails>div {
+    margin: 20px;
+}
+
+
+.card-body{
+    border-radius: 12%;
+    background: linear-gradient(180deg, rgba(0, 0, 0, 1) 0%, rgba(8, 7, 42, 1) 75%, rgb(8, 10, 63) 100%);
+    color:white;
+    text-align: center;
+}
+.card-title{
+    color: navajowhite;
+}
+.email{
+    color: white !important;
+}

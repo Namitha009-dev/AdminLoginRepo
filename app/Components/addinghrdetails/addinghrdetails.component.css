@@ -1,0 +1,13 @@
+.login-container{
+    margin-left: 10%;
+}
+.hr{
+    border: 1px solid red;
+}
+.infoHeading{
+    margin-top: 3%;
+    margin-right: 10%;
+}
+.logoutbtn{
+    border: solid 2px black ;
+}
