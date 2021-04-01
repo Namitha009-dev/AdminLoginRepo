@@ -20,29 +20,28 @@ export class AddAssociateComponent implements OnInit {
   divs: number[] = [];
 
   theAssociate: Associates = new Associates();
-  skill: Skills= new Skills;
-  theSkill=[];
+  skill: Skills = new Skills;
+  theSkill = [];
   responseDetails: any;
-  alertMessage:any;
-  flag:boolean;
+  alertMessage: any;
+  flag: boolean;
 
-  constructor(private httpClient:HttpClient,private theService:AssociatesService,private router:Router,private toastr:ToastrService) {
-    this.theSkill.push({skill: ""});
-    this.flag=true;
-   }
+  constructor(private httpClient: HttpClient, private theService: AssociatesService, private router: Router, private toastr: ToastrService) {
+    this.theSkill.push({ skill: "" });
+    this.flag = true;
+  }
 
   ngOnInit(): void {
 
     //for creating skills in combo box which is obtained from skills entry database
-    
+
     let responseDataBack = this.httpClient.get("http://localhost:8065/api/associates/skillentry");
-    responseDataBack.subscribe((responseData)=>
-    {
+    responseDataBack.subscribe((responseData) => {
       console.log(responseData);
       console.log(responseData[0]);
       this.responseDetails = responseData;
       console.log(this.responseDetails[0]);
-      
+
 
     });
 
@@ -51,52 +50,74 @@ export class AddAssociateComponent implements OnInit {
     console.log("Welcome " + val.toString());
 
   }
-  removeValue(i){
-    if(i!=0)
-    {
-    this.theSkill.splice(i,1);
+  removeValue(i) {
+    if (i != 0) {
+      this.theSkill.splice(i, 1);
     }
   }
 
-  addvalue(){
-    this.theSkill.push({skill: ""});
+  addvalue() {
+    this.theSkill.push({ skill: "" });
   }
 
   createDiv(): void {
     console.log("hjkkk");
-    
+
     this.divs.push(this.divs.length);
   }
 
-  removeDiv():void {
+  removeDiv(): void {
     this.divs.pop();
   }
 
-  test()
-  {
+  test() {
     console.log(this.theSkill.push(this.skill));
   }
 
+  // readUrl(event:any) {
+  //   if (event.target.files && event.target.files[0]) {
+  //     var reader = new FileReader();
+
+  //     reader.onload = (event: ProgressEvent) => {
+  //       this.theAssociate.associateImage = (<FileReader>event.target).result;
+  //     }
+
+  //     reader.readAsDataURL(event.target.files[0]);
+  //   }
+  // }
+  associateProfile: string;
+  onImageUpload(event) {
+   
+    this.theAssociate.associateImage = "../../assets/images/associateProfiles/" + event.target.files[0].name;
+    //console.log(this.associateProfile);
+    console.log(this.theAssociate.associateImage);
+  }
   addNewAssociate() {
-    this.theAssociate.skills=this.theSkill;
-    console.log(this.theAssociate);
+    this.theAssociate.skills = this.theSkill;
+    //this.theAssociate.picByte=this.theAssociate.
+    // console.log(this.theAssociate.associateImage);
+    // this.associateProfile = this.theAssociate.associateImage.replace("C:/fakepath"," ");
+    
+
+    //console.log(this.associateProfile);
+    //console.log(this.theAssociate);
 
     let proceed = confirm("do you want to contiue?");
-     if(proceed){
-     
-       
-     
-    let responseDataBack = this.theService.addNewAssociate(this.theAssociate);
+    if (proceed) {
 
-    responseDataBack.subscribe((responseData) => {
-      //alert(responseData.message);
-     // this.toastr.success(responseData.message);
-     this.alertMessage=responseData.message;
-     this.flag=!this.flag;
-      this.router.navigate(['/add-associate'])
-    
-    });
-  }
+
+
+      let responseDataBack = this.theService.addNewAssociate(this.theAssociate);
+
+      responseDataBack.subscribe((responseData) => {
+        //alert(responseData.message);
+        // this.toastr.success(responseData.message);
+        this.alertMessage = responseData.message;
+        this.flag = !this.flag;
+        this.router.navigate(['/add-associate'])
+
+      });
+    }
   }
 
 

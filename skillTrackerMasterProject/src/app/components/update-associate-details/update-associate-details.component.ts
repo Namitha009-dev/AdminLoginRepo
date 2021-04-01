@@ -89,6 +89,17 @@ export class UpdateAssociateDetailsComponent implements OnInit {
     console.log(this.theSkill.push(this.skill));
   }
 
+  associateProfile: string;
+  @Input('theAssociate.associateImage') associateImage="";
+  @Input('fileName')fileName="";
+  onImageUpload(event) {
+    this.fileName=event.target.files[0].name;
+    this.theAssociate.associateImage = "../../assets/images/associateProfiles/" + event.target.files[0].name;
+    this.associateImage="../../assets/images/associateProfiles/" + event.target.files[0].name;
+    //console.log(this.associateProfile);
+    console.log(this.theAssociate.associateImage);
+  }
+
   responseData:any;
   //updates associate details based on associate Id
   updateAssociate(){

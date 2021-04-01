@@ -3,8 +3,25 @@
     <h3 style="text-align: center; padding: 30px; margin-left: 15px;"><strong>Update Associate</strong> </h3>
 
     <form #associateCreationForm="ngForm">
+
         <div class="form-group text-center p-3 m-3 border border-dark" style="margin-top:20px;">
+            <div class=" profile col-md-6 w-100">
+                <img src="{{theAssociate.associateImage}}" height="100px"  width="100px" alt="no profile added"><br>
+            </div><br>
+            <div class="col-md-6 w-100 row">
+                <div class="col-sm-2">
+                <input type="file" id="associateImage" ngModel name="associateImage"
+                        #associateImage="ngModel" [(ngModel)]="theAssociate.associateImage"
+                        (change)="onImageUpload($event)">
+                </div>
+           
+            <div class="col-sm-2">
+                <input  type="text" placeholder="edit profile" value="{{fileName}}">
+            </div><br>
+
+        </div>
             <div class="row m-3">
+
                 <div class="col-m-6 w-100">
                     <input type="text" id="associateName" class="form-control" required ngModel name="associateName"
                         [(ngModel)]="theAssociate.associateName" #associateName="ngModel"><br>
@@ -72,14 +89,14 @@
                             </div>
                         </div>
                         <div class="col-lg-2 p-3">
-                         
-                                    <span (click)="removeValue(i)" [disabled]="butDisabled"><i class="fa fa-minus-circle"
-                                            style="font-size:35px;color:red;margin-right: -10px;"></i>
-                                    </span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                    <span (click)="addvalue()"><i class="fa fa-plus-circle"
-                                            style="font-size:35px;color:green;margin-left: -10px;"></i>
-                                    </span>
-                            
+
+                            <span (click)="removeValue(i)" [disabled]="butDisabled"><i class="fa fa-minus-circle"
+                                    style="font-size:35px;color:red;margin-right: -10px;"></i>
+                            </span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <span (click)="addvalue()"><i class="fa fa-plus-circle"
+                                    style="font-size:35px;color:green;margin-left: -10px;"></i>
+                            </span>
+
                         </div>
                         <div class="col-lg-1 p-3">
 
@@ -91,6 +108,7 @@
 
             </div>
             <br>
+
 
 
             <button type="button" (click)="updateAssociate()" class=" btn btn-success btn-lg btn-block"

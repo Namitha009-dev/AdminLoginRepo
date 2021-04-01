@@ -1,3 +1,4 @@
+
 import { Skills } from "./skills";
 
 export class Associates {
@@ -7,4 +8,5 @@ export class Associates {
     associateMobileNo : string;
     skills: Array<Skills>=[];
     message:string;
+    associateImage:string;
 }
